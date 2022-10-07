@@ -38,7 +38,7 @@ public class Contest extends BaseEntity{
              
           for (Question question : qList) {
                  s=question.getLevel().toString();
-                 if(question.getLevel()!=contestLevel || s!=question.getLevel().toString())
+                 if(question.getLevel()!=contestLevel && s!=question.getLevel().toString())
                  {
                         throw new InvalidContestException("Ex");
                  }
