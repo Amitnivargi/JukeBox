@@ -57,12 +57,14 @@ public class User extends BaseEntity {
     // Check if Contest is present in the User or Not
 
     public boolean checkIfContestExists(Contest contest){
-        List<Question> list= userContestQuestions.getQuestionsByContest(contest);
+        List<Contest> list= getContests();
        // userContestQuestions.getQuestionsByContest(contest);
-       if(list!=null) {
-        return true;
-       }
-       return false;
+      for (Contest contest2 : list) {
+        if(contest2.id==contest.id) {
+            return true;
+        }
+      }
+      return false;
     }
 
     public void addContestQuestion(Contest contest, List<Question> qList){
