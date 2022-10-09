@@ -35,7 +35,13 @@ public class Contest extends BaseEntity{
     }
 
      private void validateQuestionList(List<Question> qList, Level contestLevel) throws InvalidContestException {
-        
+        Question q=qList.get(0);
+        String s=q.getLevel().toString();
+        for(Question question:qList) {
+            if(question.getLevel().toString()!=s ||question.getLevel().toString()!=contestLevel.toString()) {
+                throw new InvalidContestException();
+            }
+        }
      }
 
     // TODO: CRIO_TASK_MODULE_SERVICES
