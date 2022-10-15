@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.crio.codingame.entities.Level;
 import com.crio.codingame.entities.Question;
+import com.crio.codingame.exceptions.QuestionNotFoundException;
 
 public class QuestionRepository implements IQuestionRepository {
 
@@ -38,7 +39,10 @@ public class QuestionRepository implements IQuestionRepository {
 
     @Override
     public List<Question> findAll() {
+        List<Question> questions = questionMap.entrySet().stream().map(e -> e.getValue()).collect(Collectors.toList());
+        return questions;
     }
+
 
     @Override
     public Optional<Question> findById(String id) {
@@ -72,6 +76,15 @@ public class QuestionRepository implements IQuestionRepository {
 
     @Override
     public List<Question> findAllQuestionLevelWise(Level level) {
+        if (level == null) {
+            throw new QuestionNotFoundException("Question not found");
+        }
+        List<Question> questions = questionMap.entrySet().stream().map(e -> e.getValue())
+                .filter(e -> e.getLevel().equals(level)).collect(Collectors.toList());
+        for (Question ques : questions) {
+            System.out.println(ques.getLevel());
+        }
+        return questions;
     }
     
 }

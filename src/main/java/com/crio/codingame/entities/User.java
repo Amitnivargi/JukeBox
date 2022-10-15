@@ -55,6 +55,10 @@ public class User extends BaseEntity {
 
 
     public boolean checkIfContestExists(Contest contest){
+        for (Contest con : contests) {
+            if (con.getId() == contest.getId())
+                return true;
+        }
         return false;
     }
 

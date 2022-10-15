@@ -36,6 +36,11 @@ public class UserRepository implements IUserRepository{
 
     @Override
     public List<User> findAll() {
+        List<User> users = userMap.entrySet().stream().map(e -> e.getValue()).collect(Collectors.toList());
+        /*for(User user: users){
+            System.out.println(user.getName());
+        }*/
+        return users;
     }
 
     @Override
@@ -70,6 +75,13 @@ public class UserRepository implements IUserRepository{
 
     @Override
     public Optional<User> findByName(String name) {
+        List<User> users = userMap.entrySet().stream().map(e -> e.getValue())
+                .filter(n -> n.getName().equalsIgnoreCase(name)).collect(Collectors.toList());
+        /*for (User user : users) {
+            System.out.println(user.getName());
+        }*/
+        Optional<User> listOptional = users.stream().findAny();
+        return listOptional;
     }
     
 }

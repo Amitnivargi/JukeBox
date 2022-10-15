@@ -55,11 +55,24 @@ public class ContestService implements IContestService {
 
 
     private List<Question> pickQuestionsList(final List<Question> questions,final Integer numQuestion){
+        Random random = new Random();
+        
+        final List<Question> newList = new ArrayList<Question>();
+        for (int i = 0; i < numQuestion; i++) {
+            int randomIndex = random.nextInt(questions.size());
+            newList.add(questions.get(randomIndex));
+            questions.remove(randomIndex);
+        }
+        return newList;
     }
 
 
     @Override
     public List<Contest> getAllContestLevelWise(Level level) {
+        if (level == null) {
+            return contestRepository.findAll();
+        }
+       return contestRepository.findAllContestLevelWise(level);
     }
 
     @Override
@@ -87,6 +100,15 @@ public class ContestService implements IContestService {
 
     
     private void validateContest(final Contest contest, final String contestCreator) throws InvalidContestException {
+        if(contest.getContestStatus().equals(ContestStatus.IN_PROGRESS)){
+            throw new InvalidContestException("Cannot Run Contest. Contest for given id:"+contest.getId()+" is in progress!");
+        }
+        if(contest.getContestStatus().equals(ContestStatus.ENDED)){
+            throw new InvalidContestException("Cannot Run Contest. Contest for given id:"+contest.getId()+ " is ended!");
+        }
+        if(!contest.getCreator().getName().equals(contestCreator)){
+            throw new InvalidContestException("Cannot Run Contest. User:"+contestCreator+ " is not the contest creator of contest id:"+contest.getId());
+        }
     }
 
     private List<Question> pickRandomQuestions(final List<Question> questions){

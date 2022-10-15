@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import com.crio.codingame.entities.Contest;
 import com.crio.codingame.entities.Level;
+import com.crio.codingame.exceptions.ContestNotFoundException;
 
 public class ContestRepository implements IContestRepository {
 
@@ -39,6 +40,8 @@ public class ContestRepository implements IContestRepository {
 
     @Override
     public List<Contest> findAll() {
+        List<Contest> contest = contestMap.entrySet().stream().map(e -> e.getValue()).collect(Collectors.toList());
+        return contest;
     }
 
     @Override
@@ -73,6 +76,13 @@ public class ContestRepository implements IContestRepository {
 
     @Override
     public List<Contest> findAllContestLevelWise(Level level) {
+        if (level == null) {
+            throw new ContestNotFoundException("Contest Not found");
+        }
+        List<Contest> contests = contestMap.entrySet().stream().map(e -> e.getValue())
+                        .filter(e -> e.getLevel().equals(level))
+                        .collect(Collectors.toList());
+        return contests;
     }
 
     
