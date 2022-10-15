@@ -27,31 +27,18 @@ public class Contest extends BaseEntity{
     public Contest(String name, List<Question> questions, Level level, User creator,
             ContestStatus contestStatus) {
         this.name = name;
-        // this.questions = new ArrayList<>();
-        this.questions = questions;
+        this.questions = new ArrayList<>();
         validateQuestionList(questions, level);
         this.level = level;
         this.creator = creator;
         this.contestStatus = contestStatus;
     }
 
-     private void validateQuestionList(List<Question> qList, Level contestLevel) throws InvalidContestException {
-        Question q=qList.get(0);
-        String s=q.getLevel().toString();
-        for(Question question:qList) {
-            if(question.getLevel().toString()!=s ||question.getLevel().toString()!=contestLevel.toString()) {
-                throw new InvalidContestException();
-            }
-        }
-     }
+    private void validateQuestionList(List<Question> qList, Level contestLevel) throws InvalidContestException {
+    }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Change the Contest Status to ENDED
 
     public void endContest(){
-        this.contestStatus= ContestStatus.ENDED;
-           
-
     }
     
     public String getName() {

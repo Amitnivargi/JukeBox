@@ -53,18 +53,9 @@ public class User extends BaseEntity {
         return contests.stream().collect(Collectors.toList());
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Check if Contest is present in the User or Not
 
     public boolean checkIfContestExists(Contest contest){
-        List<Contest> list= getContests();
-       // userContestQuestions.getQuestionsByContest(contest);
-      for (Contest contest2 : list) {
-        if(contest2.id==contest.id) {
-            return true;
-        }
-      }
-      return false;
+        return false;
     }
 
     public void addContestQuestion(Contest contest, List<Question> qList){

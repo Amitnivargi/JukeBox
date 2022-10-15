@@ -1,13 +1,10 @@
 package com.crio.codingame.repositories;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import com.crio.codingame.entities.Contest;
 import com.crio.codingame.entities.Level;
 
@@ -39,18 +36,9 @@ public class ContestRepository implements IContestRepository {
         return entity;
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Find all the list of Contest Present in the Repository
-    // Tip:- Use Java Streams
 
     @Override
     public List<Contest> findAll() {
-      List<Contest> list=new ArrayList<>();
-        Stream<Contest> s= contestMap.values().stream();
-        s.forEach(x->list.add(x));
-        return list;
-
-    // return Collections.emptyList();
     }
 
     @Override
@@ -82,22 +70,9 @@ public class ContestRepository implements IContestRepository {
         return 0;
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Find all the list of Contest Present in the Repository provided Level
-    // Tip:- Use Java Streams
 
     @Override
     public List<Contest> findAllContestLevelWise(Level level) {
-     List<Contest> list=findAll();
-     List<Contest> list1=new ArrayList<>();
-     for (Contest contest : list) {
-        if(contest.getLevel().equals(level)){
-            list1.add(contest);
-        }
-
-        
-     }
-     return list1;
     }
 
     

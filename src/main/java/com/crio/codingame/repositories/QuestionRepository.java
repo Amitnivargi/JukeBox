@@ -1,15 +1,11 @@
 package com.crio.codingame.repositories;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 import com.crio.codingame.entities.Level;
 import com.crio.codingame.entities.Question;
 
@@ -39,18 +35,9 @@ public class QuestionRepository implements IQuestionRepository {
         return entity;
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Find all the list of Question Present in the Repository
-    // Tip:- Use Java Streams
 
     @Override
     public List<Question> findAll() {
-         
-     Stream<Question> q= questionMap.values().stream(); 
-     List<Question> ans = new ArrayList<Question>();
-      q.forEach(i-> ans.add(i));
-      return ans;
-    //return Collections.emptyList();
     }
 
     @Override
@@ -82,23 +69,9 @@ public class QuestionRepository implements IQuestionRepository {
         return 0;
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Find all the list of Question Present in the Repository provided Level
-    // Tip:- Use Java Streams
 
     @Override
     public List<Question> findAllQuestionLevelWise(Level level) {
-          List<Question> q =findAll();
-          List<Question> ans = new ArrayList<Question>();
-          for(Question que:q)
-          {
-               if(que.getLevel().toString()==level.toString())
-               {
-                    ans.add(que);
-               }
-          }
-          return ans;
-    // return Collections.emptyList();
     }
     
 }

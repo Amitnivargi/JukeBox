@@ -1,13 +1,10 @@
 package com.crio.codingame.repositories;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import com.crio.codingame.entities.User;
 
 public class UserRepository implements IUserRepository{
@@ -36,17 +33,9 @@ public class UserRepository implements IUserRepository{
         return entity;
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Find all the list of User Present in the Repository
-    // Tip:- Use Java Streams
 
     @Override
     public List<User> findAll() {
-        List<User> user1=new ArrayList<>();
-        Stream<User> user=userMap.values().stream();
-        user.forEach(x->user1.add(x));
-      
-     return user1;
     }
 
     @Override
@@ -78,18 +67,9 @@ public class UserRepository implements IUserRepository{
         return 0;
     }
 
-    // TODO: CRIO_TASK_MODULE_SERVICES
-    // Find the User Present in the Repository provided name
-    // Tip:- Use Java Streams
 
     @Override
     public Optional<User> findByName(String name) {
-        Stream<User> user=userMap.values().stream().filter(x->x.getName().equals(name));
-        Optional<User> u= user.findFirst();
-        return u;
-       // Optional<User> = user.filter(x->x.getName().equals(name));
-     // return  Optional.ofNullable(u.filter(x->x.getName().equals(name)));
-        
     }
     
 }
